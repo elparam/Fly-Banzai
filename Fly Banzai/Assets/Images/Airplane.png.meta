@@ -52,8 +52,8 @@ TextureImporter:
         y: 120
         width: 159
         height: 68
-      alignment: 9
-      pivot: {x: .503101289, y: .616022646}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Airplane_1
       rect:
@@ -63,7 +63,7 @@ TextureImporter:
         width: 40
         height: 64
       alignment: 9
-      pivot: {x: .519999981, y: .479999989}
+      pivot: {x: .524999976, y: .479999989}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

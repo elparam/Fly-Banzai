@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\AirplaneController.cs" />
+     <Compile Include="Assets\Scripts\CloudCreator.cs" />
+     <Compile Include="Assets\Scripts\CloudMover.cs" />
      <Compile Include="Assets\Scripts\PropellerRotator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
