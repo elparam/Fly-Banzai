@@ -18,7 +18,7 @@ public class CloudMover : MonoBehaviour
 
     private void ChangeCloudSprite()
     {
-        var sriteRenderer = renderer as SpriteRenderer;
+        var sriteRenderer = GetComponent<SpriteRenderer>();
         if (sriteRenderer != null)
             sriteRenderer.sprite = Sprites[Random.Range(0, Sprites.Length)];
     }
@@ -27,7 +27,7 @@ public class CloudMover : MonoBehaviour
     {
         if (gameObject != null)
         {
-            gameObject.rigidbody2D.velocity = -Vector2.right * Speed * Time.deltaTime;
+            GetComponent<Rigidbody2D>().velocity = -Vector2.right * Speed * Time.deltaTime;
         }
     }
 

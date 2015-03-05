@@ -21,7 +21,9 @@ public class CloudCreator : MonoBehaviour
         var intantiatePosition = transform.position;
         intantiatePosition.z = intantiatePosition.z + Random.Range(-0.1f, 0.2f);
         var createdObject = Instantiate(Cloud, intantiatePosition, Quaternion.identity);
+       
         _lastCloud = createdObject as GameObject;
+        _lastCloud.transform.parent = this.gameObject.transform;
     }
 
     private bool IsTimeToCreate()

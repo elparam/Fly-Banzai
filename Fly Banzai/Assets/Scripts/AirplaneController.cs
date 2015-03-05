@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class AirplaneController : MonoBehaviour
 {
@@ -7,13 +8,20 @@ public class AirplaneController : MonoBehaviour
     private Quaternion _flyDownRotaion;
     public float FlyUpForce;
     public float FlyUpBorder;
+    public Rigidbody2D _rigidbody;
+
+    private Text _gameOverText;
+    private bool _isGameOver;
 
     void Start()
     {
         _flyUpRotaion = new Quaternion();
         _flyUpRotaion = _flyDownRotaion = gameObject.transform.rotation;
         _flyUpRotaion.z = 20f / 180f * 3.14f;
-        _flyDownRotaion.z = -10f / 180f * 3.14f; ;
+        _flyDownRotaion.z = -10f / 180f * 3.14f;
+        _rigidbody = GetComponent<Rigidbody2D>();
+        _gameOverText = GameObject.FindGameObjectWithTag("GameOverText").GetComponent<Text>();
+        _gameOverText.enabled = false;
     }
 
     void Update()
@@ -35,7 +43,7 @@ public class AirplaneController : MonoBehaviour
         if (_isFlyUp && IsAirplanenTop() == false)
         {
             FlyUpRotate();
-            gameObject.rigidbody2D.AddForce(Vector2.up * Time.deltaTime * FlyUpForce);
+            _rigidbody.AddForce(Vector2.up * Time.deltaTime * FlyUpForce);
         }
         else
         {
@@ -61,11 +69,20 @@ public class AirplaneController : MonoBehaviour
         return gameObject.transform.position.y >= FlyUpBorder - difference;
     }
 
+    private bool IsAirplanenDown(float difference = 0f)
+    {
+        return gameObject.transform.position.y <= - FlyUpBorder - difference;
+    }
+
     private void StopFlyUpIfAtTop()
     {
-        if (IsAirplanenTop() && gameObject.rigidbody2D.velocity.y > 0)
+        if (IsAirplanenTop() && _rigidbody.velocity.y > 0)  
         {
-            gameObject.rigidbody2D.velocity = Vector2.zero;
+            _rigidbody.velocity = Vector2.zero;
+        }
+        if (IsAirplanenDown() && _rigidbody.velocity.y < 0)
+        {
+            _gameOverText.enabled = true;
         }
     }
 }
